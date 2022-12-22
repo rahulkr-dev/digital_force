@@ -35,6 +35,7 @@ const Signin = () => {
     };
     const { data } = await axios.post("/api/userRegister/loginUser", formData, config);
     console.log("data:", data);
+    localStorage.setItem('userId',data.id)    //changed
     setError(data.error);
     setResStatus(!data.error);
   };

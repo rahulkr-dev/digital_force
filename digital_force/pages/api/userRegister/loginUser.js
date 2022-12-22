@@ -16,7 +16,7 @@ export default async function loginUser(req, res) {
 
   try {
     if (userExists && userExists.password === password) {
-      return res.json({ error: false, message: "Login Success" });
+      return res.json({ error: false, message: "Login Success",id:userExists._id });     // changed only
 
       // throw new Error("User Alreay Exists");
     } else {

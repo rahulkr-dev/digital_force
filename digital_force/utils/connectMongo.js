@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 
-const URI = "mongodb+srv://gowtham:chokkalingam@cluster0.nziol8j.mongodb.net/?retryWrites=true&w=majority";
-// const MONGO_URI = "mongodb://localhost:27017/b21";
+// const URI = "mongodb+srv://gowtham:chokkalingam@cluster0.nziol8j.mongodb.net/?retryWrites=true&w=majority";
+const URI = "mongodb://localhost:27017/chat_2";
 // const URI = process.env.MONGO_URI;
 
 const connectDB = async () => mongoose.connect(URI);
