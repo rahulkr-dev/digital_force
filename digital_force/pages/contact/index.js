@@ -26,11 +26,11 @@ const developers = [
     portfolio: "https://rahulkr-dev.github.io/",
   },
   {
-    image: "",
+    image: "https://avatars.githubusercontent.com/u/85919490?v=4",
     name: "Venketesh",
-    github: "",
-    linkedin: "",
-    portfolio: "",
+    github: "https://github.com/VenketeshRushi",
+    linkedin: "https://www.linkedin.com/in/venketesh-rushi-423722236/",
+    portfolio: "https://venketeshrushi.github.io/Portfolio/",
   },
 ];
 

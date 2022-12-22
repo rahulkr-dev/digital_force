@@ -10,6 +10,7 @@ import {
   Text,
   HStack,
   Stack,
+  Button,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import styles from "../Upload/upload.module.css";
@@ -31,8 +32,9 @@ function Uploadimg() {
   async function getimages() {
     try {
       const res = await axios.get("http://localhost:3000/api/upload/");
-      console.log(res);
+      //console.log(res.data);
       setImages(res.data);
+      //console.log(images);
     } catch (error) {
       console.log(error);
     }
@@ -64,37 +66,21 @@ function Uploadimg() {
     getimages();
   };
 
-  // var selected = [];
-  // function handleChange(e) {
-  //   let isChecked = e.target.checked;
-  //   let value = e.target.value;
-  //   //console.log(value)
-  //   if (isChecked) {
-  //     selected.push(value);
-  //   } else {
-  //     selected = selected.filter((e) => e !== value);
-  //   }
-  // }
-
-  async function deleteimg(e) {
-    //console.log(selected);
+  async function deleteimg(img) {
+    console.log(img)
+    console.log(img.target.value);
     try {
       let res = axios.delete(`http://localhost:3000/api/upload/`, {
         headers: {
-          img: e,
+          img: img.target.value,
         },
       });
       console.log(res.data);
-      getimages();
+      //getimages();
     } catch (error) {
       console.log(error);
     }
   }
-  // async function delselectedimg() {
-  //   //console.log(selected);
-  //   deleteimg(selected);
-  //   getimages();
-  // }
 
   return (
     <>
@@ -132,10 +118,10 @@ function Uploadimg() {
                     justifyContent={"flex-end"}
                     spacing={4}
                   >
-                    <button type="submit" value="Upload" onClick={onClose}>
+                    <button type="submit" value="Upload" onClick={()=>onClose()}>
                       Upload
                     </button>
-                    <button onClick={onClose}>Close</button>
+                    <button onClick={()=>onClose()}>Close</button>
                   </HStack>
                 </form>
               </div>
@@ -161,10 +147,7 @@ function Uploadimg() {
             flexDirection={["column-reverse", "column-reverse", "row", "row"]}
             gap={"20px"}
           >
-            {/* <button onClick={delselectedimg}>
-              <h6>Delete selected images</h6>
-            </button> */}
-            <button onClick={onOpen}>
+            <button onClick={()=>onOpen()}>
               <h6>Upload New Image</h6>
             </button>
           </Box>
@@ -176,15 +159,10 @@ function Uploadimg() {
           </div>
         ) : (
           <div className={styles.allimg}>
-            {images?.map((e) => (
-              <div key={e}>
-                {/* <input
-                  onChange={(e) => handleChange(e)}
-                  type="checkbox"
-                  value={e}
-                /> */}
-                <img src={e} alt="" />
-                <button onClick={(e) => deleteimg(e)}>Delete</button>
+            {images?.map((ele) => (
+              <div key={ele}>
+                <img src={ele} alt="" />
+                <Button value={ele} onClick={(ele)=>deleteimg(ele)}>Delete</Button>
               </div>
             ))}
           </div>

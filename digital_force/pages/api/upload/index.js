@@ -1,5 +1,5 @@
 import User from "../../../models/User";
-import connectDB from "../../../utils/connectMongo"
+import connectDB from "../../../utils/connectMongo";
 import multer from "multer";
 import nextConnect from "next-connect";
 
@@ -46,58 +46,63 @@ const handler = nextConnect({
   onNoMatch(req, res) {
     res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   },
-})
-  .post(upload.array("imgCollection", 10), async (req, res) => {
-    await connectDB();
-    const reqFiles = [];
-    const url = "http://localhost:3000/";
-    for (var i = 0; i < req.files.length; i++) {
-      reqFiles.push(url + req.files[i].filename);
-    }
-    try {
-      let user = await User.updateOne(
-        { _id: "636cf6ba3db2f1fd528ee208" },
-        { $push: { imgCollection: { $each: reqFiles } } }
-      );
-      res.send({
-        message: "Done upload!",
-        userCreated: {
-          _id: user,
-        },
-      });
-    } catch (error) {
-      res.send({
-        error: error.message,
-      });
-    }
-  })
-  .get(async (req, res) => {
-    let data;
-    try {
-      let useresimg = await User.find(
-        { _id: "636cf6ba3db2f1fd528ee208" },
-        { imgCollection: 1 }
-      );
-      //console.log(useresimg)
-      data = useresimg[0].imgCollection;
-      //console.log(data)
-      res.status(200).send(data);
-    } catch (error) {
-      res.send(error.message);
-    }
-  })
-  .delete(async (req, res) => {
-    console.log(req.headers.img);
-    try {
-      let delimg = await User.updateOne(
-        { _id: "636cf6ba3db2f1fd528ee208" },
-        { $pull: { imgCollection: { $in: req.headers.img} } }
-      );
-      //console.log(delimg);
-      res.status(201).send("Images Deleted successfully");
-    } catch (error) {
-      res.status(200).send(error.message);
-    }
-  });
+});
+handler.post(upload.array("imgCollection", 10), async (req, res) => {
+  await connectDB();
+  const reqFiles = [];
+  const url = "http://localhost:3000/";
+  for (var i = 0; i < req.files.length; i++) {
+    reqFiles.push(url + req.files[i].filename);
+  }
+  try {
+    let user = await User.updateOne(
+      { _id: "63a135828cd14013971df898" },
+      { $push: { imgCollection: { $each: reqFiles } } }
+    );
+    console.log("posting images");
+    console.log(user);
+    res.send({
+      message: "Done upload!",
+      userCreated: {
+        _id: user,
+      },
+    });
+  } catch (error) {
+    res.send({
+      error: error.message,
+    });
+  }
+});
+
+handler.get(async (req, res) => {
+  console.log("geeting images");
+  let data;
+  try {
+    let useresimg = await User.find(
+      { _id: "63a135828cd14013971df898" },
+      { imgCollection: 1 }
+    );
+    //console.log(useresimg)
+    data = useresimg[0].imgCollection;
+    console.log(data);
+    res.status(200).send(data);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
+
+handler.delete(async (req, res) => {
+  console.log(req.headers.img);
+  try {
+    let delimg = await User.updateOne(
+      { _id: "63a135828cd14013971df898" },
+      { $pull: { imgCollection: { $in: req.headers.img } } }
+    );
+    console.log(delimg);
+    res.status(201).send("Images Deleted successfully");
+  } catch (error) {
+    res.status(200).send(error.message);
+  }
+});
 
 export default handler;
