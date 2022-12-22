@@ -1,0 +1,185 @@
+/* For Large Screen */
+@media screen and (min-width: 1008px) {
+  .contact_container {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+
+  .digital_tag {
+    margin-top: 100px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .digital_tag:hover {
+    text-decoration: underline;
+    color: wheat;
+  }
+
+  .profile_container {
+    text-align: center;
+    background-color: rgb(125, 48, 234);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .avater {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .avater_name {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .profile_icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .link_container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+/* For Medium Screen */
+@media screen and ((min-width: 641px) and (max-width: 1007px)) {
+  .contact_container {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+
+  .digital_tag {
+    margin-top: 100px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .digital_tag:hover {
+    text-decoration: underline;
+    color: wheat;
+  }
+
+  .profile_container {
+    text-align: center;
+    background-color: rgb(125, 48, 234);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .avater {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .avater_name {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .profile_icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .link_container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+/* For Small Screen */
+@media screen and (max-width: 641px) {
+  .contact_container {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+
+  .digital_tag {
+    margin-top: 100px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .digital_tag:hover {
+    text-decoration: underline;
+    color: wheat;
+  }
+
+  .profile_container {
+    text-align: center;
+    background-color: rgb(125, 48, 234);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .avater {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .avater_name {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .profile_icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .link_container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+}
