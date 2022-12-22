@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 
-const URI = "mongodb+srv://gowtham:chokkalingam@cluster0.nziol8j.mongodb.net/?retryWrites=true&w=majority";
+const URI = "mongodb+srv://gowtham:chokkalingam@cluster0.nziol8j.mongodb.net/Digital_Force?retryWrites=true&w=majority";
+// const URL = `mongodb+srv://gowtham:chokkalingam@ecommerceweb.sxe9k6w.mongodb.net/ECOMMERCE?retryWrites=true&w=majority`
 // const MONGO_URI = "mongodb://localhost:27017/b21";
 // const URI = process.env.MONGO_URI;
 
