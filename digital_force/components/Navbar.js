@@ -19,7 +19,7 @@ const Navbar = () => {
 
         {/* all routes */}
         <div className={styles.all_routes}>
-          <Link href="/uploads">
+          <Link href="/uploadimg">
             <p className={styles.routes}>UPLOAD IMAGE</p>
           </Link>
 
