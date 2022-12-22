@@ -26,6 +26,8 @@
 
 // const User = mongoose.models.User || mongoose.model("User", userDetailsScehma);
 
+//export default User;
+
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
@@ -65,5 +67,3 @@ const userSchema = new mongoose.Schema(
 
 export default mongoose.models.user || mongoose.model("user", userSchema);
 
-
-export default User;
