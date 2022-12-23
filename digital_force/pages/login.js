@@ -16,6 +16,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { setCookie } from "cookies-next";
 
 const VARIANT_COLOR = "teal";
 
@@ -78,7 +79,7 @@ const Signin = () => {
       });
       setTimeout(() => {
         localStorage.setItem("userInfo", JSON.stringify(data.data)) || [];
-
+        setCookie("userInfo", data.data.userExists._id);
         router.push("/");
       }, 1400);
 
@@ -97,7 +98,8 @@ const Signin = () => {
       <Box height={"max-content"} mt="4" zIndex={0}>
         <Flex
           bg={"#65647C"}
-          width="full" p='20' 
+          width="full"
+          p="20"
           m="auto"
           alignItems="center"
           justifyContent="center"
@@ -192,21 +194,18 @@ const Signin = () => {
                 w={"50%"}
                 m="auto"
                 mt="2"
-               
-                
               >
-              
                 Create New Account
               </Button>
               {/* <signUp /> */}
             </Box>
             <Text
-                 
-                  fontSize={{ base: "1rem", md: "1rem" }}
-                  mt={2} color='blue.400'
-                >
-                  Forget Password ?
-                </Text>
+              fontSize={{ base: "1rem", md: "1rem" }}
+              mt={2}
+              color="blue.400"
+            >
+              Forget Password ?
+            </Text>
           </Box>
         </Flex>
       </Box>

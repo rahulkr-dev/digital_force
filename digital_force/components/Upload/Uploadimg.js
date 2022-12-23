@@ -11,19 +11,42 @@ import {
   HStack,
   Stack,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import styles from "../Upload/upload.module.css";
 import axios from "axios";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/dist/client/router";
 
 function Uploadimg() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [files, setFiles] = useState([]);
   const [images, setImages] = useState([]);
+  const router = useRouter();
+  const toast = useToast();
 
   useEffect(() => {
-    getimages();
+    let user = JSON.parse(localStorage.getItem("userInfo"));
+    if (user.userExists && user.userExists.role === "member") {
+      console.log(user.userExists);
+      getimages();
+    } else {
+      toast({
+        title: "User Is Not Authorized",
+        position: "top",
+        description: "To See This Page You Have To Signup As Member",
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+      });
+      router.push("/");
+    }
   }, []);
+
+  // useEffect(() => {
+  //   getimages();
+  // }, []);
 
   const onChange = (e) => {
     setFiles(e.target.files);
@@ -31,12 +54,24 @@ function Uploadimg() {
 
   async function getimages() {
     try {
-      const res = await axios.get("http://localhost:3000/api/upload/");
+      let id = getCookie("useInfo");
+      const res = await axios.get("http://localhost:3000/api/upload/", {
+        headers: {
+          id: id,
+        },
+      });
       //console.log(res.data);
       setImages(res.data);
       //console.log(images);
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Something went wrong",
+        position: "top",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
     }
   }
 
@@ -48,20 +83,36 @@ function Uploadimg() {
     );
     console.log(formData);
     try {
+      let id = getCookie("useInfo");
       const res = await axios.post(
         "http://localhost:3000/api/upload/",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            id: id,
           },
         }
       );
       //console.log(res.message);
       console.log(res);
+      toast({
+        title: "Images Added Successfully",
+        position: "top",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
     } catch (err) {
       //console.log(err.response.status);
       console.log(err);
+      toast({
+        title: "Something went wrong",
+        position: "top",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
     }
     getimages();
   };
@@ -70,14 +121,30 @@ function Uploadimg() {
     //console.log(img)
     //console.log(img.target.value);
     try {
+      let id = getCookie("useInfo");
       let res = axios.delete(`http://localhost:3000/api/upload/`, {
         headers: {
           img: img,
+          id: id,
         },
       });
       console.log(res.data);
+      toast({
+        title: "Image Deleted Successfully",
+        position: "top",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
       getimages();
     } catch (error) {
+      toast({
+        title: "Something went wrong",
+        position: "top",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
       console.log(error);
     }
   }
@@ -118,10 +185,14 @@ function Uploadimg() {
                     justifyContent={"flex-end"}
                     spacing={4}
                   >
-                    <button type="submit" value="Upload" onClick={()=>onClose()}>
+                    <button
+                      type="submit"
+                      value="Upload"
+                      onClick={() => onClose()}
+                    >
                       Upload
                     </button>
-                    <button onClick={()=>onClose()}>Close</button>
+                    <button onClick={() => onClose()}>Close</button>
                   </HStack>
                 </form>
               </div>
@@ -147,7 +218,7 @@ function Uploadimg() {
             flexDirection={["column-reverse", "column-reverse", "row", "row"]}
             gap={"20px"}
           >
-            <button onClick={()=>onOpen()}>
+            <button onClick={() => onOpen()}>
               <h6>Upload New Image</h6>
             </button>
           </Box>
@@ -162,7 +233,7 @@ function Uploadimg() {
             {images?.map((ele) => (
               <div key={ele}>
                 <img src={ele} alt="" />
-                <Button onClick={()=>deleteimg(ele)}>Delete</Button>
+                <Button onClick={() => deleteimg(ele)}>Delete</Button>
               </div>
             ))}
           </div>
