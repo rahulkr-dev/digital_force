@@ -10,7 +10,7 @@ export default async function getUser(req, res) {
     return res.json({ error: true, message: "Users Not found" });
   } else {
     try {
-      res.send(users);
+      return res.send(users);
     } catch (error) {
       res.send({ error: true, message: error.message });
     }

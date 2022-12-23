@@ -42,7 +42,7 @@ const UserList = () => {
 
  
   const fetchUser = async () => {
-    let { data } = await axios.get("http://localhost:3000/api/userRegister/getUser");
+    let { data } = await axios.get("/api/userRegister/getUser");
     setUsers(data);
   };
 
