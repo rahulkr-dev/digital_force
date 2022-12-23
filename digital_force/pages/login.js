@@ -117,7 +117,7 @@ const Signin = () => {
             <Box
               p={0}
               mt={6}
-              pB={2}
+              pb={2}
               display={"grid"}
               align="center"
               justifyContent="center"
