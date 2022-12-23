@@ -10,14 +10,18 @@ export default ({users}) => {
   const router = useRouter()
 
   const socket = useRef(null)
-  useEffect(async()=>{
-    let user = await JSON.parse(localStorage.getItem('userInfo'))
+  useEffect(()=>{
 
-    if(user && user._id){
-      setCurrentUser(user._id);
+    let user = JSON.parse(localStorage.getItem('userInfo'))
+    console.log(user)
+
+    if(user && user.userExists){
+      console.log(user.userExists)
+      setCurrentUser(user.userExists._id);
     }else{
         router.push('/login')
     }
+    
   },[])
   useEffect(() => {
     fetch('/api/socket').finally(() => {

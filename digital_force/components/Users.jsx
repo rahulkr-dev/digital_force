@@ -1,7 +1,9 @@
 import { Box, Text, Input, Flex, Image } from '@chakra-ui/react'
 import React from 'react'
+import { useState } from 'react';
 
 const Users = ({ users, changeChatUser }) => {
+    const [bg,setBg] = useState(false)
     return (
         <Box bg="gray.100" pos="fixed" left="0" h="100vh" w="25vw">
             <Input display="block" mx='auto' my="1.5rem" w="75%" borderRadius="1.3rem" placeholder="Search" p=".8rem 1.5rem" 
