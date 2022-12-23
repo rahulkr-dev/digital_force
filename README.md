@@ -18,36 +18,36 @@
 
 ### Navbar
 
-- ![nav.png](../assets/nav.png)
+- ![nav.png](./assets/nav.png)
 
 ### Footer
 
-- ![footer.png](../assets/footer.png)
+- ![footer.png](./assets/footer.png)
 
 ### Signup
 
-- ![signup.png](../assets/signup.png)
+- ![signup.png](./assets/signup.png)
 
 ### Login
 
-- ![](../assets/login.png)
+- ![](./assets/login.png)
 
 ### User Images
 
-- ![](../assets/image.png)
+- ![](./assets/image.png)
 
 ### Upload Image
 
-- ![](../assets/upload.png)
+- ![](./assets/upload.png)
 
 ### Chat Option
 
-- ![](../assets/chat.png)
+- ![](./assets/chat.png)
 
 ### About US
 
-- ![](../assets/about.png)
+- ![](./assets/about.png)
 
 ### Contact US
 
-- ![](../assets/contact.png)
+- ![](./assets/contact.png)
