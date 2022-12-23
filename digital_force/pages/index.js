@@ -17,17 +17,14 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
-  // console.log("users:", users);
 
-  users.forEach((element) => {
-    // console.log('element:', element)
-    // console.log("imgCollection:", element.imgCollection);
-  });
 
   const fetchUser = async () => {
     let { data } = await axios.get("http://localhost:3000/api/userRegister/getImages");
     setUsers(data);
   };
+
+
 
   useEffect(() => {
     fetchUser();
@@ -54,14 +51,14 @@ export default function Home() {
         {/* Home Page */}
         <h2 className={styles.heading}>All Collections</h2>
 
-        <div className={styles.container}>
-          {/* {posts.map((item) => (
+        {/* <div className={styles.container}>
+          {img.map((item) => (
             <div className={styles.image_container} key={item._id}>
               <img className={styles.images} src={item.image} alt={item.name} />
               <p className={styles.names}>{item.name}</p>
             </div>
-          ))} */}
-        </div>
+          ))}
+        </div> */}
 
         {/* Footer */}
         <Footer />
