@@ -10,9 +10,11 @@ export default ({users}) => {
   const router = useRouter()
 
   const socket = useRef(null)
-  useEffect(()=>{
-    if(localStorage.getItem("userId")){
-      setCurrentUser(localStorage.getItem("userId"))
+  useEffect(async()=>{
+    let user = await JSON.parse(localStorage.getItem('userInfo'))
+
+    if(user && user._id){
+      setCurrentUser(user._id);
     }else{
         router.push('/login')
     }
