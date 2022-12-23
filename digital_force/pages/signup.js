@@ -33,7 +33,7 @@ const SignUp = () => {
   const toast = useToast();
   const router = useRouter();
   const [formData, setFromData] = useState(initState);
-  console.log("formData:", formData);
+  // console.log("formData:", formData);
   const [resStatus, setResStatus] = useState(false);
   const [data, setData] = useState([]);
 
@@ -91,7 +91,7 @@ const SignUp = () => {
       });
       setTimeout(() => {
         router.push("/login");
-      }, 2000);
+      },1400);
 
       return;
     }
@@ -158,7 +158,7 @@ const SignUp = () => {
               ></Image> */}
                 <Text
                   fontWeight={700}
-                  fontSize={{ base: "1.2rem", md: "2rem" }}
+                  fontSize={{ base: "1rem", md: "1.1rem" }}
                   mt={2}
                 >
                   Sign Up to Digital Force Account

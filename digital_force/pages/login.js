@@ -80,7 +80,7 @@ const Signin = () => {
         localStorage.setItem("userInfo", JSON.stringify(data.data)) || [];
 
         router.push("/");
-      }, 2000);
+      }, 1400);
 
       return;
     }
@@ -94,10 +94,10 @@ const Signin = () => {
   return (
     <>
       <Navbar />
-      <Box height={"max-content"}>
+      <Box height={"max-content"} mt="4" zIndex={0}>
         <Flex
           bg={"#65647C"}
-          width="full"
+          width="full" p='20' 
           m="auto"
           alignItems="center"
           justifyContent="center"
@@ -105,7 +105,7 @@ const Signin = () => {
           <Box
             bg={"white"}
             height={"600px"}
-            my={4}
+            my={0}
             borderWidth={1}
             px={4}
             width="full"
@@ -117,7 +117,7 @@ const Signin = () => {
             <Box
               p={0}
               mt={6}
-              pB={6}
+              pB={2}
               display={"grid"}
               align="center"
               justifyContent="center"
@@ -131,14 +131,14 @@ const Signin = () => {
               ></Image> */}
                 <Text
                   fontWeight={700}
-                  fontSize={{ base: "1.2rem", md: "2rem" }}
+                  fontSize={{ base: "1rem", md: "1.2rem" }}
                   mt={2}
                 >
                   Login to Digital Force Account
                 </Text>
               </Box>
               {/* <SignUpForm /> */}
-              <Grid mt={4} w="full" templateColumns="repeat(2, 1fr)" gap={4}>
+              <Grid mt={0} w="full" templateColumns="repeat(2, 1fr)" gap={4}>
                 {/* 2 Email*/}
                 <GridItem colSpan={{ base: 2, md: 2 }}>
                   <FormControl isRequired>
@@ -192,11 +192,21 @@ const Signin = () => {
                 w={"50%"}
                 m="auto"
                 mt="2"
+               
+                
               >
+              
                 Create New Account
               </Button>
               {/* <signUp /> */}
             </Box>
+            <Text
+                 
+                  fontSize={{ base: "1rem", md: "1rem" }}
+                  mt={2} color='blue.400'
+                >
+                  Forget Password ?
+                </Text>
           </Box>
         </Flex>
       </Box>

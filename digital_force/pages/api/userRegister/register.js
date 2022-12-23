@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 export default async function registerUser(req, res) {
   const { firstName, lastName, phone, email, password } = req.body;
-  console.log('req.body;:', req.body)
+  // console.log('req.body;:', req.body)
 
   console.log("Connecting To DB ");
   await connectMongo();
