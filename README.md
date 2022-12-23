@@ -14,6 +14,14 @@
 - Next.js
 - Socket.io
 
+## User Guide
+
+- git clone https://github.com/rahulkr-dev/digital_force.git
+- cd digital_force
+- npm install
+- npm run dev
+- now you can able to use our Digital Force website
+
 ## Overview
 
 ### Navbar
