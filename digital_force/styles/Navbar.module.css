@@ -7,6 +7,7 @@
     font-family: "Roboto", sans-serif;
     position: fixed;
     top: 0;
+    z-index: 1;
   }
 
   .navbar_parent {

@@ -67,16 +67,16 @@ function Uploadimg() {
   };
 
   async function deleteimg(img) {
-    console.log(img)
-    console.log(img.target.value);
+    //console.log(img)
+    //console.log(img.target.value);
     try {
       let res = axios.delete(`http://localhost:3000/api/upload/`, {
         headers: {
-          img: img.target.value,
+          img: img,
         },
       });
       console.log(res.data);
-      //getimages();
+      getimages();
     } catch (error) {
       console.log(error);
     }
@@ -162,7 +162,7 @@ function Uploadimg() {
             {images?.map((ele) => (
               <div key={ele}>
                 <img src={ele} alt="" />
-                <Button value={ele} onClick={(ele)=>deleteimg(ele)}>Delete</Button>
+                <Button onClick={()=>deleteimg(ele)}>Delete</Button>
               </div>
             ))}
           </div>
