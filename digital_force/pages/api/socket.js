@@ -26,7 +26,8 @@ const ioHandler = (req, res) => {
       const checkOnline = onLineUsers.get(info.to);
       // we store mongoId and socketId as a key value pairs in map checkOnline give us socketId
       if(checkOnline){
-        console.log(checkOnline,info)
+        // console.log(checkOnline,info)
+        console.log(onLineUsers)
         socket.to(checkOnline).emit('message-recieve',info.msg)
       }
     })
