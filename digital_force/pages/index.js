@@ -17,21 +17,28 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
-  console.log("users:", users);
+  // console.log("users:", users);
 
   users.forEach((element) => {
     // console.log('element:', element)
-    console.log("imgCollection:", element.imgCollection);
+    // console.log("imgCollection:", element.imgCollection);
   });
 
   const fetchUser = async () => {
-    let { data } = await axios.get("http://localhost:3000/api/userRegister/getUser");
+    let { data } = await axios.get("http://localhost:3000/api/userRegister/getImages");
     setUsers(data);
   };
 
   useEffect(() => {
     fetchUser();
   }, []);
+
+  let img = users.filter((e) => {
+    return e.imgCollection.length > 0
+     
+  });
+
+  console.log("img:", img);
   return (
     <>
       <Head>
