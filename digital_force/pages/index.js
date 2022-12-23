@@ -54,6 +54,9 @@ export default function Home() {
             ele.imgCollection.map((element) => (
               <div className={styles.image_container} key={element}>
                 <img className={styles.images} src={element} alt={element} />
+                <a download={element.split("-")[2]} href={element}>
+                  <button>Download</button>
+                </a>
               </div>
             ))
           )}
