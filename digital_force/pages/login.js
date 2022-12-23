@@ -26,6 +26,7 @@ const Signin = () => {
   };
 
   const loginUser = async () => {
+    localStorage.removeItem("userInfo");
     setResStatus(false);
 
     const config = {
@@ -35,15 +36,7 @@ const Signin = () => {
     };
     const { data } = await axios.post("/api/userRegister/loginUser", formData, config);
     console.log("data:", data);
-    setError(data.error);
-    setResStatus(!data.error);
-  };
-
-  const hanldeClick = async() => {
-
-    await loginUser();
-
-    if (error) {
+    if (data.error) {
       toast({
         title: "User Not Found",
         position: "top",
@@ -56,9 +49,7 @@ const Signin = () => {
       setError(false);
 
       return;
-    }
-
-    if (resStatus) {
+    } else if (data.message === "Login Success") {
       toast({
         title: "Account created.",
         position: "top",
@@ -67,12 +58,20 @@ const Signin = () => {
         duration: 2000,
         isClosable: true,
       });
-      router.push("/");
-      // setTimeout(() => {
-      // }, 2000);
+      setTimeout(() => {
+        localStorage.setItem("userInfo", JSON.stringify(data.data)) || [];
+
+        router.push("/");
+      }, 2000);
 
       return;
     }
+
+    setResStatus(!data.error);
+  };
+
+  const hanldeClick = async () => {
+    loginUser();
   };
   return (
     <Box height={"600px"}>

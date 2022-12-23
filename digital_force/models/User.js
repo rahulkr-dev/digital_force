@@ -58,6 +58,15 @@ const userSchema = new mongoose.Schema(
       enum: ["user", "member"],
       default: "user",
     },
+    mgCollection: {
+      type: Array,
+      required: false,
+    },
+    role: {
+      type: String,
+      enum: ["user", "member"],
+      default: "user",
+    },
   },
   {
     versionKey: false,

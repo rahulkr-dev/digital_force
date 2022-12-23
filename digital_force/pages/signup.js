@@ -1,4 +1,4 @@
-import { Box, Flex, Text, FormControl, FormLabel, Input, Button, Image, GridItem, Grid, useToast } from "@chakra-ui/react";
+import { Box, Flex, Text, FormControl, FormLabel, Input, Button, Image, GridItem, Grid, useToast, Select } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -11,26 +11,24 @@ const SignUp = () => {
     lastName: "",
     phone: "",
     email: "",
-    age: "",
-
+    role: "",
     password: "",
     confirmPassword: "",
   };
   const toast = useToast();
   const router = useRouter();
   const [formData, setFromData] = useState(initState);
+  console.log("formData:", formData);
   const [resStatus, setResStatus] = useState(false);
   const [data, setData] = useState([]);
 
-  const { firstName, lastName, confirmPassword, email, age, password, phone, country } = formData;
+  const { firstName, lastName, confirmPassword, email, age, password, phone, role } = formData;
   const [passwordChk, setPasswrdChek] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { type, name, value, checked } = e.target;
 
-    const val = name === "age" ? Number(value) : value;
-
-    setFromData({ ...formData, [name]: val });
+    setFromData({ ...formData, [name]: value });
   };
 
   const createUser = async () => {
@@ -41,10 +39,34 @@ const SignUp = () => {
         "Content-type": "application/json",
       },
     };
-    const { data } = await axios.post("/api/userRegister/register", formData, config);
+    const { data } = await axios.post("/api/userRegister/register", { firstName, lastName, confirmPassword, email, password, phone, role }, config);
     // console.log("data:", data);
+    if (data.message === "User_Exists") {
+      toast({
+        title: "User Already Exist",
+        position: "top",
+        description: "Try with different email id",
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+      });
+      setFromData({ ...formData, email: "" });
+    } else {
+      setResStatus(true);
+      toast({
+        title: "Account created.",
+        position: "top",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        router.push("/login");
+      }, 2000);
 
-    setResStatus(true);
+      return;
+    }
   };
 
   const hanldeClick = () => {
@@ -72,30 +94,14 @@ const SignUp = () => {
     if (!passwordChk) {
       setResStatus(false);
       createUser();
-
-      if (resStatus) {
-        toast({
-          title: "Account created.",
-          position: "top",
-          description: "We've created your account for you.",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
-        setTimeout(() => {
-          router.push("/login");
-        }, 2000);
-
-        return;
-      }
     }
   };
   return (
-    <Box height={"600px"}>
-      <Flex bg={"#65647C"} width="full" align="center" justifyContent="center">
+    <Box height={"full"}>
+      <Flex bg={"#65647C"} height={"auto"} width="full" align="center" justifyContent="center">
         <Box
           bg={"white"}
-          height={"600px"}
+          height={"auto"}
           my={4}
           borderWidth={1}
           px={4}
@@ -162,30 +168,16 @@ const SignUp = () => {
                   <Input placeholder="Phone" type="text" name="phone" value={phone} onChange={handleChange} />
                 </FormControl>
               </GridItem>
-
-              {/* 4 Age*/}
               <GridItem colSpan={{ base: 2, md: 1 }}>
                 <FormControl isRequired>
-                  <FormLabel>Age</FormLabel>
-                  <Input placeholder="Age" type="number" name="age" value={age} onChange={handleChange} />
+                  <FormLabel>Role</FormLabel>
+                  <Select placeholder="Select Your Role" name="role" value={role} onChange={handleChange}>
+                    <option value="user">User</option>
+                    <option value="member">Member</option>
+                  </Select>
+                  {/* <Input placeholder="Phone" type="text" name="phone" value={phone} onChange={handleChange} /> */}
                 </FormControl>
               </GridItem>
-
-              {/* 5 Address*/}
-
-              {/* <GridItem colSpan={2}>
-                <FormControl>
-                  <FormLabel>Country</FormLabel>
-
-                  <Select placeholder={value ? value : "Select Country"} name="country" options={options} value={value} onChange={changeHandler} />
-                  <Select name="country" value={country} onChange={handleChange} placeholder="Select country">
-                  <option value="india">India</option>
-                  <option value="usa">USA</option>
-                  <option value="canada">Canada</option>
-                  <option value="japan">Japan</option>
-                </Select>
-                </FormControl>
-              </GridItem> */}
 
               {/* 8 Buttom */}
               <GridItem colSpan={2}>
