@@ -2,9 +2,11 @@ import styles from "../styles/Navbar.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/dist/client/router";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
@@ -20,6 +22,7 @@ const Navbar = () => {
     localStorage.removeItem("userInfo");
     setUser(null);
     deleteCookie("userInfo");
+    router.push("/");
   };
   return (
     <div className={styles.main_navbar}>
