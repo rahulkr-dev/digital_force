@@ -39,12 +39,15 @@ export default ({users}) => {
         console.log('disconnect')
       })
 
-      socket.current.emit('add-user',currentUser)
+      let user = JSON.parse(localStorage.getItem('userInfo'))
+
+      socket.current.emit('add-user',user.userExists._id)
 
 
     })
 
   }, [currentUser]) 
+
 
   //  this is handle by chatbody components
   const changeChatUser = (newUser,newUserName)=>{

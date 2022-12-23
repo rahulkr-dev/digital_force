@@ -65,7 +65,7 @@ const ChatBody = ({ chatUser, currentUser, socket, chatUserName, currentUserName
                     <Text color="gray.900" fontWeight="bold" fontSize="20px" >{chatUserName}</Text>
                 </Flex>
             </Flex>
-            <Box p='2rem 3rem' overflowY="scroll" h="85vh" w="75vw" bg="gray.900">
+            <Box p='2rem 3rem' overflowY="scroll" h="77vh" w="75vw" bg="gray.900">
                 {userMsg.length > 0 && userMsg.map((item, i) => (
                     <Flex m=".4rem 0" key={i} justifyContent={item.self ? "flex-end" : 'flex-start'} >
                         <Text textTransform="capitalize" borderRadius="1rem" p="5px 1rem" bg={item.self ? "green.200" : "gray.200"}  >
