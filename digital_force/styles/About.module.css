@@ -1,0 +1,89 @@
+/* For Large Screen */
+@media screen and (min-width: 1008px) {
+  .about_us {
+    width: 30%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .about {
+    font-size: 25px;
+  }
+
+  .about:hover {
+    text-decoration: underline;
+    color: wheat;
+  }
+
+  .about_para {
+    margin-top: 30px;
+  }
+
+  .contacts {
+    color: blue;
+    text-decoration: underline;
+  }
+}
+
+/* For Medium Screen */
+@media screen and ((min-width: 641px) and (max-width: 1007px)) {
+  .about_us {
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .about {
+    font-size: 25px;
+  }
+
+  .about:hover {
+    text-decoration: underline;
+    color: wheat;
+  }
+
+  .about_para {
+    margin-top: 30px;
+  }
+
+  .contacts {
+    color: blue;
+    text-decoration: underline;
+  }
+}
+
+/* For Small Screen */
+@media screen and (max-width: 641px) {
+  .about_us {
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .about {
+    font-size: 25px;
+  }
+
+  .about:hover {
+    text-decoration: underline;
+    color: wheat;
+  }
+
+  .about_para {
+    margin-top: 30px;
+  }
+
+  .contacts {
+    color: blue;
+    text-decoration: underline;
+  }
+}
