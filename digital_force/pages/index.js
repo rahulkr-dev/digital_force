@@ -5,33 +5,43 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
 
-// export const getStaticProps = async () => {
-//   const res = await fetch("/api/userRegister/getUser");
-//   const data = await res.json();
-//   return {
-//     props: {
-//       posts: data,
-//     },
-//   };
-// };
-
-export default function Home() {
-  const [users, setUsers] = useState([]);
-  console.log("users:", users);
-
-  users.forEach((element) => {
-    // console.log('element:', element)
-    console.log("imgCollection:", element.imgCollection);
-  });
-
-  const fetchUser = async () => {
-    let { data } = await axios.get("http://localhost:3000/api/userRegister/getUser");
-    setUsers(data);
+export const getStaticProps = async () => {
+  const res = await fetch(
+    "https://repulsive-nightgown-colt.cyclic.app/products?category=skin"
+  );
+  const data = await res.json();
+  return {
+    props: {
+      posts: data,
+    },
   };
+};
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
+export default function Home({ posts }) {
+  // const [users, setUsers] = useState([]);
+  // // const [image, setImage] = useState([]);
+
+  // const fetchUser = async () => {
+  //   let { data } = await axios.get(
+  //     "http://localhost:3000/api/userRegister/getUser"
+  //   );
+  //   setUsers(data);
+  // };
+
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
+
+  // users.forEach((element) => {
+  //   // console.log('element:', element)
+  //   const images = element.imgCollection;
+  //   if (images.length > 0) {
+  //     setImage([...images]);
+  //   }
+  // });
+
+  // console.log(image);
+
   return (
     <>
       <Head>
@@ -48,12 +58,12 @@ export default function Home() {
         <h2 className={styles.heading}>All Collections</h2>
 
         <div className={styles.container}>
-          {/* {posts.map((item) => (
+          {posts.map((item) => (
             <div className={styles.image_container} key={item._id}>
               <img className={styles.images} src={item.image} alt={item.name} />
-              <p className={styles.names}>{item.name}</p>
+              {/* <p className={styles.names}>{item.name}</p> */}
             </div>
-          ))} */}
+          ))}
         </div>
 
         {/* Footer */}

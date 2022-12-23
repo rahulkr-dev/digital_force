@@ -34,8 +34,8 @@
   }
   .images {
     width: 100%;
-    border-bottom: 1px solid palevioletred;
-    border-radius: 10px 10px 0px 0px;
+    /* border-bottom: 1px solid palevioletred; */
+    border-radius: 10px;
   }
 
   .names {
@@ -83,8 +83,8 @@
   }
   .images {
     width: 100%;
-    border-bottom: 1px solid palevioletred;
-    border-radius: 10px 10px 0px 0px;
+    /* border-bottom: 1px solid palevioletred; */
+    border-radius: 10px;
   }
 
   .names {
@@ -132,8 +132,8 @@
   }
   .images {
     width: 100%;
-    border-bottom: 1px solid palevioletred;
-    border-radius: 10px 10px 0px 0px;
+    /* border-bottom: 1px solid palevioletred; */
+    border-radius: 10px;
   }
 
   .names {
