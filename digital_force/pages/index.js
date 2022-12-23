@@ -1,20 +1,37 @@
+import axios from "axios";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
 
-export const getStaticProps = async () => {
-  const res = await fetch("/api/userRegister/getUser");
-  const data = await res.json();
-  return {
-    props: {
-      posts: data,
-    },
-  };
-};
+// export const getStaticProps = async () => {
+//   const res = await fetch("/api/userRegister/getUser");
+//   const data = await res.json();
+//   return {
+//     props: {
+//       posts: data,
+//     },
+//   };
+// };
 
-export default function Home({ posts }) {
-  console.log(posts);
+export default function Home() {
+  const [users, setUsers] = useState([]);
+  console.log("users:", users);
+
+  users.forEach((element) => {
+    // console.log('element:', element)
+    console.log("imgCollection:", element.imgCollection);
+  });
+
+  const fetchUser = async () => {
+    let { data } = await axios.get("http://localhost:3000/api/userRegister/getUser");
+    setUsers(data);
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
   return (
     <>
       <Head>
