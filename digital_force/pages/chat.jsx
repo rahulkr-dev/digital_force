@@ -6,7 +6,9 @@ import Users from '../components/Users';
 import { useRouter } from 'next/navigation';
 export default ({users}) => {
   const [currentUser,setCurrentUser] = useState(undefined)
-  const [chatUser,setChatUser] = useState(undefined)
+  const [chatUser,setChatUser] = useState(undefined);
+  const [chatUserName,setChatUserName] = useState(undefined)
+  const [currentUserName,setCurrentUserName] = useState(undefined);
   const router = useRouter()
 
   const socket = useRef(null)
@@ -18,6 +20,7 @@ export default ({users}) => {
     if(user && user.userExists){
       console.log(user.userExists)
       setCurrentUser(user.userExists._id);
+      setCurrentUserName(user.userExists.firstName)
     }else{
         router.push('/login')
     }
@@ -44,14 +47,15 @@ export default ({users}) => {
   }, [currentUser]) 
 
   //  this is handle by chatbody components
-  const changeChatUser = (newUser)=>{
+  const changeChatUser = (newUser,newUserName)=>{
     setChatUser(newUser)
+    setChatUserName(newUserName)
   }
   return (
     <>
     <Users changeChatUser={changeChatUser} users={users}/>
     {
-      chatUser?<ChatBody chatUser={chatUser} currentUser={currentUser} socket={socket}/>:(<Cover />)
+      chatUser?<ChatBody currentUserName={currentUserName} chatUserName={chatUserName} chatUser={chatUser} currentUser={currentUser} socket={socket}/>:(<Cover />)
     }
     
     </>
