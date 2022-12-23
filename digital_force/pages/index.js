@@ -4,9 +4,7 @@ import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
 
 export const getStaticProps = async () => {
-  const res = await fetch(
-    "https://repulsive-nightgown-colt.cyclic.app/products?category=skin"
-  );
+  const res = await fetch("/api/userRegister/getUser");
   const data = await res.json();
   return {
     props: {
@@ -16,6 +14,7 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ posts }) {
+  console.log(posts);
   return (
     <>
       <Head>
@@ -32,12 +31,12 @@ export default function Home({ posts }) {
         <h2 className={styles.heading}>All Collections</h2>
 
         <div className={styles.container}>
-          {posts.map((item) => (
+          {/* {posts.map((item) => (
             <div className={styles.image_container} key={item._id}>
               <img className={styles.images} src={item.image} alt={item.name} />
               <p className={styles.names}>{item.name}</p>
             </div>
-          ))}
+          ))} */}
         </div>
 
         {/* Footer */}

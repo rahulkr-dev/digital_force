@@ -5,7 +5,8 @@
     margin-top: 80px;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
-    color: white;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
   }
 
   .heading:hover {
@@ -53,7 +54,8 @@
     margin-top: 80px;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
-    color: white;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
   }
 
   .heading:hover {
@@ -101,7 +103,8 @@
     margin-top: 80px;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
-    color: white;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
   }
 
   .heading:hover {

@@ -1,15 +1,26 @@
 import styles from "../styles/Navbar.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { deleteCookie } from "cookies-next";
 
 const Navbar = () => {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
-    const userExist = user.userExists;
-    setUser(userExist);
+
+    if (user) {
+      setUser(user.userExists);
+    }
     // console.log(userExist);
   }, []);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("userInfo");
+    setUser(null);
+    deleteCookie("userInfo");
+  };
   return (
     <div className={styles.main_navbar}>
       <div className={styles.navbar_parent}>
@@ -31,12 +42,25 @@ const Navbar = () => {
             <p className={styles.routes}>UPLOAD IMAGE</p>
           </Link>
 
-          <Link href="/signup">
-            <p className={styles.routes}>{user ? "CHAT" : "SIGNUP"}</p>
-          </Link>
+          {user ? (
+            <Link href="/chat">
+              <p className={styles.routes}>CHAT</p>
+            </Link>
+          ) : (
+            <Link href="/signup">
+              {" "}
+              <p className={styles.routes}>SIGNUP</p>
+            </Link>
+          )}
 
           <Link href="/login">
-            <p className={styles.routes}>{user ? "LOGOUT" : "LOGIN"}</p>
+            {user ? (
+              <p className={styles.routes} onClick={handleLogout}>
+                LOGOUT
+              </p>
+            ) : (
+              <p className={styles.routes}>LOGIN</p>
+            )}
           </Link>
         </div>
       </div>
