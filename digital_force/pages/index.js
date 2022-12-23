@@ -18,21 +18,19 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const [users, setUsers] = useState([]);
 
-
   const fetchUser = async () => {
-    let { data } = await axios.get("http://localhost:3000/api/userRegister/getImages");
+    let { data } = await axios.get(
+      "http://localhost:3000/api/userRegister/getImages"
+    );
     setUsers(data);
   };
-
-
 
   useEffect(() => {
     fetchUser();
   }, []);
 
   let img = users.filter((e) => {
-    return e.imgCollection.length > 0
-     
+    return e.imgCollection.length > 0;
   });
 
   console.log("img:", img);
@@ -51,14 +49,15 @@ export default function Home() {
         {/* Home Page */}
         <h2 className={styles.heading}>All Collections</h2>
 
-        {/* <div className={styles.container}>
-          {img.map((item) => (
-            <div className={styles.image_container} key={item._id}>
-              <img className={styles.images} src={item.image} alt={item.name} />
-              <p className={styles.names}>{item.name}</p>
-            </div>
-          ))}
-        </div> */}
+        <div className={styles.container}>
+          {img.map((ele) =>
+            ele.imgCollection.map((element) => (
+              <div className={styles.image_container} key={element}>
+                <img className={styles.images} src={element} alt={element} />
+              </div>
+            ))
+          )}
+        </div>
 
         {/* Footer */}
         <Footer />
