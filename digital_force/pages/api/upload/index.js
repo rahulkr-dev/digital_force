@@ -47,6 +47,7 @@ const handler = nextConnect({
     res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   },
 });
+
 handler.post(upload.array("imgCollection", 10), async (req, res) => {
   await connectDB();
   const reqFiles = [];
@@ -55,8 +56,11 @@ handler.post(upload.array("imgCollection", 10), async (req, res) => {
     reqFiles.push(url + req.files[i].filename);
   }
   try {
+    let userid = req.headers.cookie.split("=");
+    let id = userid[1];
+    console.log("posting in this user id", id);
     let user = await User.updateOne(
-      { _id: "63a135828cd14013971df898" },
+      { _id: id },
       { $push: { imgCollection: { $each: reqFiles } } }
     );
     console.log("posting images");
@@ -75,13 +79,12 @@ handler.post(upload.array("imgCollection", 10), async (req, res) => {
 });
 
 handler.get(async (req, res) => {
-  console.log("geeting images");
+  let userid = req.headers.cookie.split("=");
+  let id = userid[1];
+  console.log("geeting images", id);
   let data;
   try {
-    let useresimg = await User.find(
-      { _id: "63a135828cd14013971df898" },
-      { imgCollection: 1 }
-    );
+    let useresimg = await User.find({ _id: id }, { imgCollection: 1 });
     //console.log(useresimg)
     data = useresimg[0].imgCollection;
     console.log(data);
@@ -93,9 +96,12 @@ handler.get(async (req, res) => {
 
 handler.delete(async (req, res) => {
   console.log(req.headers.img);
+  let userid = req.headers.cookie.split("=");
+  let id = userid[1];
+  console.log("deleting img id is", id);
   try {
     let delimg = await User.updateOne(
-      { _id: "63a135828cd14013971df898" },
+      { _id: id },
       { $pull: { imgCollection: { $in: req.headers.img } } }
     );
     console.log(delimg);

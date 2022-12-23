@@ -1,7 +1,15 @@
 import styles from "../styles/Navbar.module.css";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [user, setUser] = useState(undefined);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    const userExist = user.userExists;
+    setUser(userExist);
+    // console.log(userExist);
+  }, []);
   return (
     <div className={styles.main_navbar}>
       <div className={styles.navbar_parent}>
@@ -24,11 +32,11 @@ const Navbar = () => {
           </Link>
 
           <Link href="/signup">
-            <p className={styles.routes}>SIGNUP</p>
+            <p className={styles.routes}>{user ? "CHAT" : "SIGNUP"}</p>
           </Link>
 
           <Link href="/login">
-            <p className={styles.routes}>LOGIN</p>
+            <p className={styles.routes}>{user ? "LOGOUT" : "LOGIN"}</p>
           </Link>
         </div>
       </div>
