@@ -52,6 +52,7 @@ const ChatBody = ({ chatUser, currentUser,socket }) => {
 
     return (
         <Box ml="25vw" w="75vw" >
+            <Box></Box>
             <Box p='2rem 3rem' overflowY="scroll"  h="85vh" w="75vw" bg="gray.900">
                 {userMsg.length > 0 && userMsg.map((item, i) => (
                     <Flex  m=".4rem 0"  key={i} justifyContent={item.self?"flex-end":'flex-start'} >
