@@ -3,7 +3,7 @@
   .footer {
     width: 100%;
     height: 200px;
-    background-color: rgb(227, 74, 181);
+    background-color: #4d4ae8;
     font-family: "Roboto", sans-serif;
   }
 
@@ -62,7 +62,7 @@
 
   .copy_text {
     font-size: 14px;
-    color: black;
+    color: white;
   }
 }
 
@@ -71,7 +71,7 @@
   .footer {
     width: 100%;
     height: 200px;
-    background-color: rgb(227, 74, 181);
+    background-color: #4d4ae8;
     font-family: "Roboto", sans-serif;
   }
 
@@ -130,7 +130,7 @@
 
   .copy_text {
     font-size: 14px;
-    color: black;
+    color: white;
   }
 }
 
@@ -139,7 +139,7 @@
   .footer {
     width: 100%;
     height: 200px;
-    background-color: rgb(227, 74, 181);
+    background-color: #4d4ae8;
     font-family: "Roboto", sans-serif;
   }
 
@@ -198,6 +198,6 @@
 
   .copy_text {
     font-size: 14px;
-    color: black;
+    color: white;
   }
 }
